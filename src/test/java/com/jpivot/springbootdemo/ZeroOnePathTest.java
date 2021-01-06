@@ -3,9 +3,11 @@ package com.jpivot.springbootdemo;
 public class ZeroOnePathTest {
 
     public static void main(String[] args) {
-        int[] wt = {15, 16, 20, 12, 9, 14, 18};
-        int[] value = {32, 37, 46, 26, 21, 30, 42};
-        int W = 60;
+//        int[] wt = {15, 16, 2, 12, 9, 14, 18};
+        int[] wt = {4, 6, 5, 2, 7, 3};
+//        int[] value = {9, 37, 46, 26, 21, 30, 42};
+        int[] value = {2, 10, 3, 6, 5, 4};
+        int W = 17;
         System.out.println(caculate(wt, value, W));
     }
 
@@ -44,7 +46,7 @@ public class ZeroOnePathTest {
         int curWorth = 0;
         // 当前背包的重量
         int curBagWeight = bagWeight;
-        for (int i = n; i >= 2; i--) {
+        for (int i = n; i >= 1; i--) {
             if (dp[i][curBagWeight] - dp[i - 1][curBagWeight] > 0) {
                 curBagWeight = curBagWeight - wt[i - 1];
                 curTotal = curTotal + wt[i - 1];
@@ -52,11 +54,11 @@ public class ZeroOnePathTest {
                 System.out.printf("第%d件    %2d    %3d\r\n", i, wt[i - 1], value[i - 1]);
             }
         }
-        if (dp[n][bagWeight] - curWorth == value[0]) {
-            curTotal = curTotal + wt[0];
-            curWorth = curWorth + value[0];
-            System.out.printf("第%d件    %2d    %3d\r\n", 1, wt[0], value[0]);
-        }
+//        if (dp[n][bagWeight] - curWorth == value[0]) {
+//            curTotal = curTotal + wt[0];
+//            curWorth = curWorth + value[0];
+//            System.out.printf("第%d件    %2d    %3d\r\n", 1, wt[0], value[0]);
+//        }
         System.out.printf("当前总重量：%2d,当前总价值：%3d\r\n", curTotal, curWorth);
 
         // 这里再求出装入的都是哪几个物品
