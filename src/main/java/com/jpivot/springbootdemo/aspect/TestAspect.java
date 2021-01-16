@@ -1,4 +1,4 @@
-package com.jpivot.springbootdemo;
+package com.jpivot.springbootdemo.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
