@@ -7,7 +7,8 @@ public class SolveNQueensTest {
 
     public static void main(String[] args) {
         SolveNQueensTest solveNQueensTest = new SolveNQueensTest();
-        System.out.println(solveNQueensTest.solveNQueens(1));
+        List<List<String>> solve = solveNQueensTest.solveNQueens(12);
+        System.out.println(solve.size());
 
     }
 
@@ -44,6 +45,8 @@ public class SolveNQueensTest {
         int n = board.get(row).length();
         for (int col = 0; col < n; col++) {
             // 排除不合法选择
+            // 如果在未达到底层的某一层就不满足条件，自然无法继续递归，也就无法触发结束条件
+            // 这样起到了剪枝效果，不会全层递归
             if (!isValid(board, row, col))
                 continue;
             // 做选择
