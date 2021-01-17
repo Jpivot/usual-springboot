@@ -3,6 +3,9 @@ package algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * leetcode 51、52题
+ */
 public class SolveNQueensTest {
 
     public static void main(String[] args) {
