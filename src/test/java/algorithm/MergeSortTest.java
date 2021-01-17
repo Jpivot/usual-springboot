@@ -9,7 +9,7 @@ import java.util.Collections;
  */
 public class MergeSortTest {
     public static void main(String[] args) {
-        int[] nums = {8, 7, 6, 5, 4, 3, 2, 1,191};//{8, 4, 5, 7, 1, 3, 6, 2};//{11, 2, 55, 8, 6,13,4,3,0};
+        int[] nums = {11, 2, 55, 8, 6,13,4,3,0};//{8, 7, 6, 5, 4, 3, 2, 1, 191};//{8, 4, 5, 7, 1, 3, 6, 2};//{11, 2, 55, 8, 6,13,4,3,0};
         sort(nums);
         Collections.singletonList(nums).forEach(num -> System.out.print(Arrays.toString(num) + " "));
     }
@@ -22,41 +22,34 @@ public class MergeSortTest {
 
     static void doSort(int[] nums, int low, int high, int[] tmpNums) {
         // 这里差值有0、1两种可能，
-        if (high - low <= 1) {
-            if (nums[low] > nums[high]) {
-                int tmp = nums[low];
-                nums[low] = nums[high];
-                nums[high] = tmp;
-            }
-            return;
+        if (low < high) {
+            int mid = (low + high) / 2;
+            doSort(nums, low, mid, tmpNums);
+            doSort(nums, mid + 1, high, tmpNums);
+            merge(nums, low, mid, high, tmpNums);
         }
-
-        int mid = (low + high) / 2;
-        doSort(nums, low, mid, tmpNums);
-        doSort(nums, mid + 1, high, tmpNums);
-        merge(nums, low, mid, high, tmpNums);
     }
 
     static void merge(int[] nums, int low, int mid, int high, int[] tmpNums) {
-        int i = mid + 1;
-        int j = low;
+        int i = low;
+        int j = mid + 1;
         int k = 0;
-        while (k < tmpNums.length && j <= mid && i <= high) {
-            if (nums[j] > nums[i]) {
-                tmpNums[k++] = nums[i++];
-            } else {
+        while (k < tmpNums.length && i <= mid && j <= high) {
+            if (nums[i] > nums[j]) {
                 tmpNums[k++] = nums[j++];
+            } else {
+                tmpNums[k++] = nums[i++];
             }
         }
-        while (j <= mid) {
-            tmpNums[k++] = nums[j++];
-        }
-        while (i <= high) {
+        while (i <= mid) {
             tmpNums[k++] = nums[i++];
         }
+        while (j <= high) {
+            tmpNums[k++] = nums[j++];
+        }
         // 需要将临时数组中的变量复制到原来的数组中
-        for (k = 0, j = low; j <= high; k++, j++) {
-            nums[j] = tmpNums[k];
+        for (k = 0, i = low; i <= high; k++, i++) {
+            nums[i] = tmpNums[k];
         }
     }
 }
