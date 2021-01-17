@@ -9,7 +9,7 @@ import java.util.Collections;
  */
 public class MergeSortTest {
     public static void main(String[] args) {
-        int[] nums = {11, 2, 55, 8, 6,13,4,3,0};//{8, 7, 6, 5, 4, 3, 2, 1, 191};//{8, 4, 5, 7, 1, 3, 6, 2};//{11, 2, 55, 8, 6,13,4,3,0};
+        int[] nums = {11, 2, 55, 8, 6, 13, 4, 3, 0};//{8, 7, 6, 5, 4, 3, 2, 1, 191};//{8, 4, 5, 7, 1, 3, 6, 2};//{11, 2, 55, 8, 6,13,4,3,0};
         sort(nums);
         Collections.singletonList(nums).forEach(num -> System.out.print(Arrays.toString(num) + " "));
     }
@@ -21,7 +21,6 @@ public class MergeSortTest {
     }
 
     static void doSort(int[] nums, int low, int high, int[] tmpNums) {
-        // 这里差值有0、1两种可能，
         if (low < high) {
             int mid = (low + high) / 2;
             doSort(nums, low, mid, tmpNums);
