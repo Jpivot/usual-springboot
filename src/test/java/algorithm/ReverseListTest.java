@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Stack;
+
 public class ReverseListTest {
     public static void main(String[] args) {
 
@@ -22,5 +24,21 @@ public class ReverseListTest {
             listNode = listNode.next;
         }
         return listNode;
+    }
+
+    public ListNode reverseListByStack(ListNode head) {
+        ListNode listNode = new ListNode();
+        ListNode listNode1=listNode;
+        Stack<ListNode> stack = new Stack<>();
+        for (;head!=null;head=head.next){
+            stack.push(head);
+        }
+        while (!stack.isEmpty()){
+            ListNode tmp = stack.pop();
+            listNode1.next = tmp;
+            tmp.next=null;
+            listNode1=listNode1.next;
+        }
+        return listNode.next;
     }
 }
