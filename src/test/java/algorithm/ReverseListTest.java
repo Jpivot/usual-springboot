@@ -28,16 +28,16 @@ public class ReverseListTest {
 
     public ListNode reverseListByStack(ListNode head) {
         ListNode listNode = new ListNode();
-        ListNode listNode1=listNode;
+        ListNode listNode1 = listNode;
         Stack<ListNode> stack = new Stack<>();
-        for (;head!=null;head=head.next){
+        for (; head != null; head = head.next) {
             stack.push(head);
         }
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             ListNode tmp = stack.pop();
             listNode1.next = tmp;
-            tmp.next=null;
-            listNode1=listNode1.next;
+            tmp.next = null;
+            listNode1 = listNode1.next;
         }
         return listNode.next;
     }
